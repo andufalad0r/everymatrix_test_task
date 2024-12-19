@@ -1,0 +1,46 @@
+﻿@using EveryMatrixApp.Domain.Entities
+@model List<Customer>
+@{
+}
+@if (Model.Count <= 0)
+{
+    <div class="alert alert-warning" role="alert">
+        "customers" collection is empty.
+    </div>
+    <p><a class="link-offset-3" asp-area="" asp-controller="Customer" asp-action="Add">Create customer</a></p>
+}
+else
+{
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th scope="col">First Name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone number</th>
+                <th scope="col">Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@customer.Email</td>
+                    <td>@customer.PhoneNumber</td>
+                    <td>@(customer.Address != null ? customer.Address : "No address")</td>
+                    <td>
+                        <form asp-controller="Customer" asp-action="Delete" method="post">
+                            <input type="hidden" name="customerId" value="@customer.CustomerId" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

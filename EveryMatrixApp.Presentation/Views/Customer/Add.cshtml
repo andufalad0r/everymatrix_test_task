@@ -1,0 +1,42 @@
+﻿@using EveryMatrixApp.Presentation.Models
+@model CustomerViewModel
+@{
+}
+
+@if(!Model.IsValid)
+{
+    <div class="alert alert-danger" role="alert">
+        @Model.Message
+    </div>
+}
+else if(Model.IsSaved)
+{
+    <div class="alert alert-success" role="alert">
+        @Model.Message
+    </div>
+}
+<form asp-controller="Customer" asp-action="Add" method="post">
+    <div class="d-grid gap-3">
+        <div class="form-group col-md-6">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" class="form-control" name="CustomerDto.FirstName" id="inputFirstName" placeholder="First Name" value="@Model.CustomerDto?.FirstName">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" class="form-control" name="CustomerDto.LastName" id="inputLastName" placeholder="Last Name" value="@Model.CustomerDto?.LastName">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" name="CustomerDto.Email" id="inputEmail4" placeholder="Email" value="@Model.CustomerDto?.Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPhoneNumber4">Phone Number</label>
+            <input type="text" class="form-control" name="CustomerDto.PhoneNumber" id="inputPhoneNumber4" placeholder="Phone number" value="@Model.CustomerDto?.PhoneNumber">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputAddress">Address</label>
+            <input type="text" class="form-control" name="CustomerDto.Address" id="inputAddress" placeholder="Address" value="@Model.CustomerDto?.Address">
+        </div>
+        <button type="submit" class="btn btn-primary col-md-6">Add customer</button>
+    </div>
+</form>
